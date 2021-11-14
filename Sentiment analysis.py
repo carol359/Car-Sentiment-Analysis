@@ -22,8 +22,8 @@ t4=StringVar();
 
 # Creating Components to attach to the GUI window... 
 name = Label(top,bg='#FADBD8', text = "User Name").place(x = 90,y = 50)  
-email = Label(top,bg='#FADBD8', text = "Review Title").place(x = 90, y = 90)  
-password = Label(top, bg='#FADBD8',text = "Review Text").place(x = 90, y = 130)
+email = Label(top,bg='#FADBD8', text = "Title").place(x = 90, y = 90)  
+password = Label(top, bg='#FADBD8',text = "Review").place(x = 90, y = 130)
 rating=Label(top, bg='#FADBD8',text = "Review Sentiment").place(x = 70, y = 230)
 accuracy=Label(top, bg='#FADBD8',text = "Accuracy").place(x = 90, y = 260)
 
