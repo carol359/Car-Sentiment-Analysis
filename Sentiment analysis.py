@@ -6,26 +6,26 @@ from tensorflow import keras
 from tensorflow.keras import layers
 
 
- # To create to Gui Design Model
+ # To create to GUI Design 
 top = Tk()  
 top.geometry("600x350")
 top.title("Product Rating Sentiment Analysis");    
 #top.attributes('-alpha',0.5);
-top['bg']='#856ff8';
+top['bg']='#F5B7B1';
 
-# Creating String variable to accessing test review data from gui module
+# Creating String variable to access test review data from GUI
 t1=StringVar();
 t2=StringVar();
 t3=StringVar();
 t4=StringVar();
 
 
-# Creating Components to attach to the gui window... 
-name = Label(top,bg='orange', text = "User Name").place(x = 90,y = 50)  
-email = Label(top,bg='white', text = "Review Title").place(x = 90, y = 90)  
-password = Label(top, bg='green',text = "Review Text").place(x = 90, y = 130)
-rating=Label(top, bg='green',text = "Review Comment").place(x = 70, y = 230)
-accuracy=Label(top, bg='green',text = "Accuracy").place(x = 90, y = 260)
+# Creating Components to attach to the GUI window... 
+name = Label(top,bg='#FADBD8', text = "User Name").place(x = 90,y = 50)  
+email = Label(top,bg='#FADBD8', text = "Review Title").place(x = 90, y = 90)  
+password = Label(top, bg='#FADBD8',text = "Review Text").place(x = 90, y = 130)
+rating=Label(top, bg='#FADBD8',text = "Review Sentiment").place(x = 70, y = 230)
+accuracy=Label(top, bg='#FADBD8',text = "Accuracy").place(x = 90, y = 260)
 
 e1 = Entry(top,textvariable=t1,width=50).place(x = 180, y = 50)  
 e2 = Entry(top,textvariable=t2,width=50).place(x = 180, y = 90)  
@@ -46,7 +46,7 @@ def score(y,x):
 def fun():  
     print("Hello",t1.get())
 
-    # collecting traing data from text file using pandas module
+    # collecting traing data from text file using pandas
     imdb_data=pd.read_csv("pos.txt",sep='\n',names=["Review"],index_col=0,)
     
     prw=[]
@@ -78,10 +78,9 @@ def fun():
         #collect a testing data from the user for GUI window
         s=t2.get();
 
-        #preparing a testdata for checking training data
+        #preparing test data for evaluating training data
         s=s.lower()
         w=s.split(" ");
-        #print(w);
         for x in w:
             if x in prw:
                 pc+=1;
@@ -89,16 +88,16 @@ def fun():
                 nc+=1;
                 
         if(pc>nc):
-            t3.set("user review is Positive")
-            score1 = score(imdb_data,pc) # to calculate Accuracy from machine...
+            t3.set("USER REVIEW IS POSITIVE")
+            score1 = score(imdb_data,pc) # to calculate Accuracy of Model
         elif (pc==nc):
-            t3.set("user review is Normal")
+            t3.set("USER REVIEW IS NEUTRAL")
             score1 = score(imdb_data,1)
         elif(pc<nc):
-            t3.set("user review is Negative")
+            t3.set("USER REVIEW IS NEGATIVE")
             score1 = score(imdb_data,nc)
 
-        #printing Accuracy for a inputs using tensorflow module
+        #printing Accuracy for inputs using tensorflow 
         model = tf.keras.models.Sequential([tf.keras.layers.Dense(10)])
         model.compile(tf.keras.optimizers.SGD(), loss='mse', metrics=["accuracy"])
         history = model.fit(ny.arange(100).reshape(5, 20), ny.zeros(5),epochs=10)
